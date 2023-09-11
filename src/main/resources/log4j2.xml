@@ -2,29 +2,37 @@
 <Configuration status="INFO">
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
         </Console>
 
         <File name="OsbbCRUDFile" fileName="logs/osbb-crud.log">
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
         </File>
 
         <File name="AppFile" fileName="logs/app.log">
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
+        </File>
+
+        <File name="DataBaseMigrationFile" fileName="logs/database-migration.log">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
         </File>
     </Appenders>
 
     <Loggers>
         <Logger name="com.andriiiiiko.database.OsbbCRUD" level="info">
-            <AppenderRef ref="OsbbCRUDFile" />
+            <AppenderRef ref="OsbbCRUDFile"/>
         </Logger>
 
         <Logger name="com.andriiiiiko.App" level="info">
-            <AppenderRef ref="AppFile" />
+            <AppenderRef ref="AppFile"/>
+        </Logger>
+
+        <Logger name="com.andriiiiiko.database.DatabaseMigration" level="info">
+            <AppenderRef ref="DataBaseMigrationFile"/>
         </Logger>
 
         <Root level="warn">
-            <AppenderRef ref="Console" />
+            <AppenderRef ref="Console"/>
         </Root>
     </Loggers>
 </Configuration>

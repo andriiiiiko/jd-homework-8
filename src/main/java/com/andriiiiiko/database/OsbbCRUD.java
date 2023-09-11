@@ -6,7 +6,6 @@ import com.andriiiiiko.database.model.Person;
 import com.andriiiiiko.database.model.Resident;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.flywaydb.core.Flyway;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -51,28 +50,13 @@ public class OsbbCRUD implements AutoCloseable {
      */
     public OsbbCRUD connectToDatabase() {
         try {
-            flywayMigration();
+            DatabaseMigration.migrateDatabase();
             connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
             LOG.info("Connected to the database");
         } catch (SQLException e) {
             LOG.error("Error connecting to the database", e);
         }
         return this;
-    }
-
-    /**
-     * Perform database migration using Flyway to ensure database schema consistency.
-     */
-    private void flywayMigration() {
-        LOG.info("Flyway migration execute");
-
-        Flyway.configure()
-                .dataSource(JDBC_URL, USERNAME, PASSWORD)
-                .locations("classpath:flyway/scripts")
-                .load()
-                .migrate();
-
-        LOG.info("Flyway migration completed");
     }
 
     /**

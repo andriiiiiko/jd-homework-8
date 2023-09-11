@@ -12,6 +12,13 @@ public class DatabaseMigration {
     private static final Logger LOG = LogManager.getLogger(DatabaseMigration.class);
 
     /**
+     * Private constructor to prevent the instantiation of the DatabaseMigration class.
+     */
+    private DatabaseMigration() {
+
+    }
+
+    /**
      * Executes database migration using Flyway to maintain the consistency of the database schema.
      */
     public static void migrateDatabase() {
